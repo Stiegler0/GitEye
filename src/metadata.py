@@ -8,15 +8,15 @@ class Metadata:
         self.repo = git.Repo(git_path)
         self.detailed = detailed # If false, the commits will only show the 5 first and the 5 last commits
 
-    @property
-    def repo_name(self) -> str:
-        """Return the name of the repository"""
-        return self.repo.remotes.origin.url.split("/")[-1].replace(".git","")
+    #@property
+    #def repo_name(self) -> str:
+    #    """Return the name of the repository"""
+     #   return self.repo.remotes.origin.url.split("/")[-1].replace(".git","")
     
-    @property
-    def author(self) -> str:
-        """Return the name of the author"""
-        return self.repo.head.commit.author.name
+   #@property
+    #def author(self) -> str:
+       # """Return the name of the author"""
+      #  return self.repo.head.commit.author.name
     
     @property
     def names(self) -> list:

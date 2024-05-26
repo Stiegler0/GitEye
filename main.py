@@ -38,6 +38,8 @@ def main():
         import src.downloader as downloader
         path = downloader.download(git_path)
         print(f"{color['yellow']}Repository downloaded successfully{color['reset']}")
+        print(f"Analyzing Repo's name: {color['green']}{repo}{color['reset']}")
+        print(f"By: {color['green']}{username}")
         metadata = md.Metadata(path, detailed=detailed)
 
     else:
@@ -45,9 +47,8 @@ def main():
 
 
 
-    print(f"Analyzing {color['green']}{metadata.repo_name}{color['reset']}'s repository by {color['green']}@{metadata.author}{color['reset']}")
+    #print(f"Analyzing {color['green']}{metadata.repo_name}{color['reset']}'s repository by {color['green']}@{metadata.author}{color['reset']}")
     print(f"Total commits: {color['green']}{metadata.commit_count}{color['reset']}")
-
     print(f"First commit: {color['green']}{metadata.first_commit_date}{color['reset']}")
     print(f"Last commit: {color['green']}{metadata.last_commit_date}{color['reset']}")
 
