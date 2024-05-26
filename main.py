@@ -2,6 +2,7 @@ import src.metadata as md
 import src.table as table
 import src.file_analyzer as analyzer
 import argparse, re
+import re
 
 parser = argparse.ArgumentParser(description="Analyze a git repository")
 parser.add_argument("-p", "--path", help="Path to the git repository", type=str, required=True)
@@ -20,6 +21,7 @@ color = {
 
 # Define regex patterns
 web_link_pattern = re.compile(r'^(https?://[^\s]+)$')
+new_regex = re.compile(r'^https://github\.com/([\S]+)/([\S]+)$')
 # directory_link_pattern = re.compile(r'(?:\/(?:[\w.-]+\/)*[\w.-]+)')
 
 
@@ -29,7 +31,10 @@ def main():
     git_path = parser.parse_args().path
     detailed = parser.parse_args().detailed
 
-    if web_link_pattern.match(git_path):
+    if new_regex.match(git_path):
+        match = new_regex.match(git_path)
+        username = match.group(1)
+        repo = match.group(2)
         import src.downloader as downloader
         path = downloader.download(git_path)
         print(f"{color['yellow']}Repository downloaded successfully{color['reset']}")
